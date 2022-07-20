@@ -1,0 +1,114 @@
+﻿TO AREACIRC
+  PR [Informe a medida do raio de uma circunferencia:]
+  MAKE "RAIO READWORD
+  MAKE "AREA 3.1415926 * (POWER :RAIO 2)
+  PR (SENTENCE "Area "= FORM :AREA 0 2)
+END
+
+TO CALCULAQUAD
+  DO.UNTIL [
+    PR [Entre um valor numErico:]
+    MAKE "VLR INT READWORD
+  ][:VLR >= 0]
+  PR (SE "Resultado "= POWER :VLR 2)
+END
+
+TO DECISAO
+  PR [Entre um valor numerico para a variavel <A>:]
+  MAKE "A READWORD
+  PR [Entre um valor numerico para a variavel <B>:]
+  MAKE "B READWORD
+  MAKE "X :A + :B
+  IF :X > 10 [
+    PR (SE "Resultado "= :X)
+  ]
+END
+
+TO DIRECAO
+  IF KEYP [REALIZE RC]
+  DIRECAO
+END
+
+TO FATORIAL
+  DO.UNTIL [
+    MAKE "FAT 1
+    DO.UNTIL [
+      PR [Entre um valor numerico:]
+      MAKE "N INT READWORD
+    ][:N >= 0]
+    FOR [I 1 :N] [
+      MAKE "FAT :FAT * :I 
+    ]
+    PR (SE WORD :N "! "= :FAT)
+    DO.UNTIL [
+      PR [Deseja continuar? Responda: SIM ou NAO]
+      MAKE "RESP READWORD
+    ][OR UPPERCASE :RESP = "SIM UPPERCASE :RESP = "NAO]
+  ][UPPERCASE :RESP <> "SIM]
+END
+
+TO INC :X
+  IF NOT NAMEP :X [STOP]
+  IF NUMBERP THING :X [MAKE :X 1 + THING :X]
+END
+
+TO REALIZE :DIR
+  IF UPPERCASE :DIR = "C [CS]    ; Limpa Ã¡rea de trabalho. 
+  IF UPPERCASE :DIR = "D [RT 10] ; DireÃ§Ã£o para direita.
+  IF UPPERCASE :DIR = "E [LT 10] ; DireÃ§Ã£o para esquerda.
+  IF UPPERCASE :DIR = "L [PD]    ; Ativa o lÃ¡pis.
+  IF UPPERCASE :DIR = "N [PU]    ; Desativa o lÃ¡pis.
+  IF UPPERCASE :DIR = "F [FD 2]  ; Anda para frente.
+  IF UPPERCASE :DIR = "T [BK 2]  ; Anda para trÃ¡s.
+END
+
+TO SUBVARGLOBA2
+  MAKE "CONTADORGX :CONTADORGX + 1
+  PR :CONTADORGX
+END
+
+TO SUBVARLOCAL2
+  MAKE "CONTADORLX :CONTADORLX + 1
+  PR :CONTADORLX
+END
+
+TO TEXTOTRIANG1 :CONTEUDO
+  IF :CONTEUDO = " [STOP] ; Quando CONTEUDO for vazio pare.
+  PR :CONTEUDO
+  TEXTOTRIANG1 BUTFIRST :CONTEUDO
+END
+
+TO TEXTOTRIANG2 :CONTEUDO
+  IF :CONTEUDO = " [STOP] ; Quando CONTEUDO for vazio STOP.
+  TEXTOTRIANG2 BUTFIRST :CONTEUDO
+  PR :CONTEUDO
+END
+
+TO VARGLOBA1
+  MAKE "CONTADORG 1
+  PR :CONTADORG
+  MAKE "CONTADORG :CONTADORG + 1
+  PR :CONTADORG
+END
+
+TO VARGLOBA2
+  MAKE "CONTADORGX 1
+  PR :CONTADORGX
+  SUBVARGLOBA2
+END
+
+TO VARLOCAL1
+  LOCAL "CONTADORL
+  MAKE "CONTADORL 1
+  PR :CONTADORL
+  MAKE "CONTADORL :CONTADORL + 1
+  PR :CONTADORL
+END
+
+TO VARLOCAL2
+  LOCAL "CONTADORLX
+  MAKE "CONTADORLX 1
+  PR :CONTADORLX
+  SUBVARLOCAL2
+END
+

@@ -1,0 +1,438 @@
+TO CAP0501
+  LOCAL "N
+  PR [Entre valor para o calculo:]
+  MAKE "N RW
+  PR (SE "Resultado "= POWER INT :N 2)
+END
+
+TO CAP0502
+  LOCAL "N
+  LOCAL "R
+  PR [Entre valor para o calculo:]
+  MAKE "N RW
+  MAKE "R POWER INT :N 3
+  PR (SE "Resultado "= :R)
+END
+
+TO CAP0503
+  LOCAL "C
+  LOCAL "F
+  PR [Entre valor da temperatura em graus Celsius:]
+  MAKE "C RW
+  MAKE "F :C * 9 / 5 + 32
+  PR (SE [Temperatura em Fahrenheit] "= FORM :F 0 2)
+END
+
+TO CAP0504
+  LOCAL "F
+  LOCAL "C
+  PR [Entre valor da temperatura em graus Fahrenheit:]
+  MAKE "F RW
+  MAKE "C ((:F - 32) * 5) / 9
+  PR (SE [Temperatura em Celsius] "= FORM :C 0 2)
+END
+
+TO CAP0505
+  LOCAL "A
+  LOCAL "B
+  LOCAL "R
+  PR [Entre valor o valor <A>:]
+  MAKE "A RW
+  PR [Entre valor o valor <B>:]
+  MAKE "B RW
+  MAKE "R POWER (INT :A - INT :B) 2
+  PR (SE [Quadrado da diferenca] "= :R)
+END
+
+TO CAP0506
+  LOCAL "N
+  LOCAL "R
+  PR [Entre valor numerico inteiro:]
+  MAKE "N RW
+  MAKE "R (INT :N) * 2
+  IF :R > 30 [
+    PR (SE "Resultado "= :R)
+  ]
+END
+
+TO CAP0507
+  LOCAL "A
+  LOCAL "B
+  PR [Entre valor numerico real <A>:]
+  MAKE "A RW
+  PR [Entre valor numerico real <B>:]
+  MAKE "B RW
+  IFELSE :A > :B [
+    PR (SE "Resultado "= :A - :B)
+  ][
+    PR (SE "Resultado "= :B - :A)
+  ]
+END
+
+TO CAP0508
+  LOCAL "A
+  LOCAL "B
+  LOCAL "R
+  PR [Entre valor numerico real <A>:]
+  MAKE "A RW
+  PR [Entre valor numerico real <B>:]
+  MAKE "B RW
+  IFELSE :A > :B [
+     MAKE "R :A - :B
+  ][
+     MAKE "R :B - :A
+  ]
+  PR (SE "Resultado "= :R)
+END
+
+TO CAP0510
+  LOCAL "S
+  MAKE "S 0
+  REPEAT 100 [
+    MAKE "S :S + REPCOUNT
+  ]
+  PR (SE "Somatorio: "= :S)
+END
+
+TO CAP0511
+  LOCAL "S
+  MAKE "S 0
+  LOCAL "I
+  MAKE "I 1
+  WHILE [:I <= 100] [
+    MAKE "S :S + :I
+    MAKE "I :I + 1
+  ]
+  PR (SE "Somatorio: "= :S)
+END
+
+TO CAP0512
+  LOCAL "S
+  MAKE "S 0
+  LOCAL "I
+  MAKE "I 1
+  DO.UNTIL[
+    MAKE "S :S + :I
+    MAKE "I :I + 1
+  ] [:I > 100]
+  PR (SE "Somatorio: "= :S)
+END
+
+TO CAP0513
+  LOCAL "S
+  MAKE "S 0
+  FOR [I 1 100] [
+    MAKE "S :S + :I
+  ]
+  PR (SE "Somatorio: "= :S)
+END
+
+TO CAP0514
+  LOCAL "S
+  MAKE "S 0
+  REPEAT 500 [
+    IF (MODULO REPCOUNT 2) = 0 [
+      MAKE "S :S + REPCOUNT
+    ]
+  ]
+  PR (SE "Somatorio: "= :S)
+END
+
+TO CAP0515
+  LOCAL "S
+  MAKE "S 0
+  LOCAL "I
+  MAKE "I 1
+  WHILE [:I <= 500] [
+    IF (MODULO :I 2) = 0 [
+      MAKE "S :S + :I
+    ]
+    MAKE "I :I + 1
+  ]
+  PR (SE "Somatorio: "= :S)
+END
+
+TO CAP0516
+  LOCAL "S
+  MAKE "S 0
+  LOCAL "I
+  MAKE "I 1
+  DO.UNTIL[
+    IF (MODULO :I 2) = 0 [
+      MAKE "S :S + :I
+    ]
+    MAKE "I :I + 1
+  ] [:I > 500]
+  PR (SE "Somatorio: "= :S)
+END
+
+TO CAP0517
+  LOCAL "S
+  MAKE "S 0
+  FOR [I 1 500] [
+    IF (MODULO :I 2) = 0 [
+      MAKE "S :S + :I
+    ]
+  ]
+  PR (SE "Somatorio: "= :S)
+END
+
+TO CAP0518
+  REPEAT 19 [
+    IF (MODULO REPCOUNT 4) = 0 [
+      PR REPCOUNT
+    ]
+  ]
+END
+
+TO CAP0519
+  LOCAL "I
+  MAKE "I 1
+  WHILE [:I <= 19] [
+    IF (MODULO :I 4) = 0 [
+      PR :I
+    ]
+    MAKE "I :I + 1
+  ]
+END
+
+TO CAP0520
+  LOCAL "I
+  MAKE "I 1
+  DO.UNTIL[
+    IF (MODULO :I 4) = 0 [
+      PR :I
+    ]
+    MAKE "I :I + 1
+  ] [:I > 19]
+END
+
+TO CAP0521
+  FOR [I 1 19] [
+    IF (MODULO :I 4) = 0 [
+      PR :I
+    ]
+  ]
+END
+
+TO CAP0522
+  LOCAL "I
+  MAKE "I 0
+  REPEAT 5 [
+    PR :I
+    MAKE "I :I + 1
+  ]
+END
+
+TO CAP0523
+  LOCAL "I
+  MAKE "I 0
+  WHILE [:I <= 4] [
+    PR :I
+    MAKE "I :I + 1
+  ]
+END
+
+TO CAP0524
+  LOCAL "I
+  MAKE "I 0
+  DO.UNTIL[
+    PR :I
+    MAKE "I :I + 1
+  ] [:I > 4]
+END
+
+TO CAP0525
+  FOR [I 0 4] [
+    PR :I
+  ]
+END
+
+TO CAP0527
+  LOCAL "I
+  MAKE "I 0
+  WHILE [:I <= 15] [
+    PR :I
+    MAKE "I :I + 3
+  ]
+END
+
+TO CAP0528
+  LOCAL "I
+  MAKE "I 0
+  DO.UNTIL[
+    PR :I
+    MAKE "I :I + 3
+  ] [:I > 15]
+END
+
+TO CAP0529
+  FOR [I 0 15 3] [
+    PR :I
+  ]
+END
+
+TO CASINHA
+  PD
+  FOR [I 1 4] [FD 80 RT  90]
+  FD 80 RT 90
+  FOR [I 1 2] [FD 80 LT 120]
+  FD  80    SETPOS [ 0 0]
+  RT 150 PU SETPOS [10 0]
+  PD
+  FD 60 RT  90
+  FD 20 RT  90
+  FD 60 RT 180
+  PU
+  SETPOS [50 60]
+  PD
+  RT 90
+  FOR [I 1 4] [FD 20 RT 90]
+  PU
+  HOME
+  LT 90
+  PD
+END
+
+TO CATAVENTO1
+  REPEAT 4 [
+    RETANGPDO3 RT 90
+  ]
+END
+
+TO CATAVENTO2
+  REPEAT 8 [
+    RETANGPDO3 RT 45
+  ]
+END
+
+TO DECAGONO
+  REPEAT 10 [FD 30 LT 36]
+END
+
+TO FLORLOSA1
+  RT 120
+  REPEAT 3 [
+    LOSANGO 80 RT 120
+  ]
+END
+
+TO FLORLOSA2
+  REPEAT 4 [
+    LOSANGO 80 LT 90
+  ]
+END
+
+TO FLORLOSA3
+  REPEAT 4 [
+    LOSANGO 80 RT 90
+  ]
+END
+
+TO FLORTRIG
+  REPEAT 4 [
+    TRIANGEX RT 90
+  ]
+END
+
+TO ICOSAGONO
+  REPEAT 20 [BK 35 RT 18]
+END
+
+TO LOSANGO :TAMANHO
+  REPEAT 2 [
+    FD :TAMANHO RT 125
+    FD :TAMANHO RT  55
+  ]
+  LT 55 BK :TAMANHO RT 55
+END
+
+TO PENTAGONO
+  FD  40
+  RT  72
+  FD  40
+  RT  72
+  FD  40
+  RT  72
+  FD  40
+  RT  72
+  FD  40
+  RT  72
+END
+
+TO QUADRADO1 :TAMANHO
+  MAKE "I 1
+  WHILE [:I <= 4] [
+    FD :TAMANHO RT 90
+    MAKE "I :I + 1
+  ]
+END
+
+TO QUADRADO2 :TAMANHO
+  FOR [I 1 4] [
+    FD :TAMANHO RT 90
+  ]
+END
+
+TO QUADRADO3 :TAMANHO
+  MAKE "I 1
+  DO.UNTIL[
+    FD :TAMANHO RT 90
+    MAKE "I :I + 1
+  ] [:I > 4]
+END
+
+TO RETAMETA :TAMANHO
+  REPEAT 2 [
+    FD :TAMANHO RT 90
+    FD :TAMANHO / 2 RT 90
+  ]
+END
+
+TO RETANGPDO3
+  REPEAT 2 [
+    FD 100
+    RT  90
+    FD  50
+    RT  90
+  ]
+END
+
+TO RETANGULO1
+  FD  60
+  RT  90
+  FD 100
+  RT  90
+  FD  60
+  RT  90
+  FD 100
+  RT  90
+END
+
+TO RETANGULO2
+  REPEAT 2 [
+    BK  60
+    LT  90
+    BK 100
+    LT  90
+  ]
+END
+
+TO TRIANGEX
+  REPEAT 3 [
+    BK 70 LT 120
+  ]
+END
+
+TO TRIANGPR :TAMANHO
+  FOR [O 0 2] [
+    FD :TAMANHO RT 120
+  ]
+END
+
+TO VENTITRIG
+  REPEAT 8 [
+    TRIANGEX LT 45
+  ]
+END
+

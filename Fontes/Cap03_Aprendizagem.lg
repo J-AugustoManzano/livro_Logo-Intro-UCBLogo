@@ -1,0 +1,100 @@
+TO ESPIRAL :TAMANHO :ANGULO :NUMERO
+  IF :NUMERO = 0 [
+    STOP
+  ]
+  FD :TAMANHO
+  RT :ANGULO
+  ESPIRAL (:TAMANHO + 8) :ANGULO (:NUMERO - 1)
+END
+
+TO FLOR
+  CS
+  REPEAT 8 [PETALA RT 45]
+END
+
+TO FLORAL :N
+  IFELSE (OR :N < 1 :N > 7) [
+    PRINT [Use valores entre 1 e 7]
+  ][
+  REPEAT 8 [
+    RT 45 
+    REPEAT :N [
+      REPEAT 90 [
+          FD 2 
+          RT 2
+        ] 
+      RT 90
+      ]
+    ]
+  ]
+END
+
+TO IMPAR :N
+  IF (MODULO :N 2) <> 0 [PRINT [Ok]]
+END
+
+TO MAXIMO :A :B
+  IFELSE :A > :B [PR :A] [PR :B]
+END
+
+TO MEIOCIRC
+  REPEAT 90 [FD 1 RT 1]
+END
+
+TO PAR :N
+  IFELSE (MODULO :N 2) = 0 [PRINT [Ok]] [PRINT [Erro]]
+END
+
+TO PETALA
+  MEIOCIRC
+  RT 90
+  MEIOCIRC
+END
+
+TO POLIS :TAMANHO :LADO
+  REPEAT :LADO [FD :TAMANHO RT 360 / :LADO]
+END
+
+TO QUAD1
+  REPEAT 4 [FD 80 RT 90]
+END
+
+TO QUAD2 :TAMANHO
+  REPEAT 4 [FD :TAMANHO RT 90]
+END
+
+TO TESTE_E :N
+  IFELSE (AND :N >= 1 :N <= 9) [
+    PR [Valor esta na faixa de 1 a 9.]
+  ][
+    PR [Valor nao esta na faixa de 1 a 9.]
+  ]
+END
+
+TO TESTE_NAO :V
+  IF (NOT :V > 5) [
+    PR POWER :V 2
+  ]
+END
+
+TO TESTE_OU :TEMPO
+  IFELSE (OR UPPERCASE :TEMPO = "FRIO UPPERCASE :TEMPO = "CHUVOSO) [
+    PR [Tempo ruim, proteja-se.]
+  ][
+    PR [Tempo bom, aproveite.]
+  ]
+END
+
+TO TRELICA :X
+  IF :X = 0 [STOP]
+  REPEAT 4 [TRIANGULAR FD 40 RT 90]
+  RT 90 FD 40 LT 90
+  TRELICA :X - 1
+END
+
+TO TRIANGULAR
+  FD 40 RT 135 
+  FD 40 / SQRT 2 RT 90 
+  FD 40 / SQRT 2 RT 135
+END
+

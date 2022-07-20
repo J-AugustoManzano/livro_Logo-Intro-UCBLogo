@@ -1,0 +1,18 @@
+TO DRAW_SPIN
+  CS ST 
+  SETBG 0 ; PRETO
+  FOR [X 0 199] [
+    IF (MODULO :X 6) = 0 [SETPC  4] ; 0 - VERMELHO
+    IF (MODULO :X 6) = 1 [SETPC 13] ; 1 - ROXO
+    IF (MODULO :X 6) = 2 [SETPC  1] ; 2 - AZUL
+    IF (MODULO :X 6) = 3 [SETPC  2] ; 3 - VERD
+    IF (MODULO :X 6) = 4 [SETPC  6] ; 4 - AMARELO
+    IF (MODULO :X 6) = 5 [SETPC 14] ; 5 - LARANJA
+    SETPENSIZE INT (:X / 100 + 1)
+    FD :X
+    LT 59
+  ]
+  HT
+  SETPENSIZE 0
+END
+

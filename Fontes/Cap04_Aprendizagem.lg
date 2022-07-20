@@ -1,0 +1,253 @@
+TO ARCO1 :TAMANHO :GRAU
+  REPEAT :GRAU / 10 [
+    FORWARD :TAMANHO
+    RIGHT 10
+  ]
+END
+
+TO BOCA
+  PENUP
+  FD 20 RT 90 FD 25
+  PENDOWN
+  FD 50
+  PENUP
+  BK 75
+END
+
+TO CABECA
+  PENDOWN
+  REPEAT 4 [FD 100 RT 90]
+  PENUP
+END
+
+TO CONTAGEM1
+  MAKE "I 1 
+  WHILE [:I <= 5] [
+    PRINT :I
+    MAKE "I :I + 1 
+  ]
+END
+
+TO CONTAGEM2
+  MAKE "I 1 
+  DO.UNTIL [
+    PRINT :I
+    MAKE "I :I + 1 
+  ][:I > 5]
+END
+
+TO CONTAGEM3
+  FOR [I 1 5 1] [
+    PRINT :I
+  ]
+END
+
+TO ESTRELA40
+  FOR [I 1 40] [
+    BK 200 
+    LT 170
+  ]
+END
+
+TO FACE
+  CABECA
+  BOCA
+  PREPARA.OLHO
+  OLHO.ESQUERDO
+  OLHO.DIREITO
+  NARIZ
+END
+
+TO FRACTAL1 :LADO
+  REPEAT 6 [
+    RT 120
+    PONTA :LADO
+    LT  60
+  ]
+END
+
+TO FRACTAL2 :LADO
+  REPEAT 6 [
+    LT 120
+    PONTA :LADO
+    RT  60
+  ]
+END
+
+TO FRACTAL3 :LADO
+  RT 90
+  REPEAT 2 [
+    PONTA :LADO
+    LT  60
+    PONTA :LADO
+    RT 120
+  ]
+END
+
+TO FRACTAL4 :LADO
+  REPEAT 4 [
+    FRACTAL3 :LADO
+    LT 120
+    RT  30
+  ]
+END
+
+TO IDADE
+  PR [Entre sua idade: ]
+  MAKE "VALOR READWORD
+  IFELSE :VALOR >= 18 [PR [Maior de idade]] [PR [Menor de idade]]
+END
+
+TO LARANJA
+  REPEAT 4 [FD 50 RT 90]
+  PENUP
+  SETPOS [30 30]
+  SETPC  14
+  FILL 
+  SETPOS [0 0]
+  SETPC  0
+  PENDOWN
+END
+
+TO MALUQUINHO
+  REPEAT 100 [
+    FD (RANDOM 0 60)
+    RT (RANDOM 0 360)
+  ]
+END
+
+TO NARIZ
+  RT 90 FD 20 LT 45
+  PENDOWN
+  REPEAT 4 [FD 29 RT 90]
+  PENUP
+  HOME
+  LT 135
+  PENDOWN
+END
+
+TO OLHO
+  REPEAT 4 [FD 15 RT 90]
+END
+
+TO OLHO.DIREITO
+  PENDOWN
+  OLHO
+  PENUP
+  BK 15
+END
+
+TO OLHO.ESQUERDO
+  PENDOWN
+  OLHO
+  PENUP
+  FD 45
+END
+
+TO PENTAGRAMA
+  SETHEADING 18
+  MAKE "I 1 
+  WHILE [:I <= 5] [
+    FD 100
+    RT 144 
+    MAKE "I :I + 1
+  ]
+END
+
+TO POLIGOM :LADOS :TAMANHO
+  HT
+  IF :LADOS = 30 [STOP]
+  PENDOWN
+  REPEAT :LADOS [FD :TAMANHO RT 360 / :LADOS] 
+  PENUP
+  HOME
+  PENDOWN
+  REPEAT :LADOS [FD :TAMANHO LT 360 / :LADOS] 
+  WAIT 30
+  POLIGOM (:LADOS + 1) :TAMANHO
+  ST
+END
+
+TO PONTA :LADO
+  FD :LADO LT  60
+  FD :LADO RT 120
+  FD :LADO LT  60
+  FD :LADO
+END
+
+TO PREPARA.OLHO
+  LT 90 FD 65 RT 90 FD 20 
+END
+
+TO RAIO :TAMANHO
+  REPEAT 2 [
+    ARCO2 :TAMANHO 90
+    ARCO1 :TAMANHO 90
+  ]
+END
+
+TO RODAFLOR
+  FOR [I 1 6] [ 
+    MAKE "I 1 
+    WHILE [:I <= 120] [
+      FD 1 RT 1
+      MAKE "I :I + 1
+    ]
+    RT 60 
+    REPEAT 180 [
+      FD 1 RT 1
+    ] 
+    RT 60
+  ]
+END
+
+TO SAMAMBAIA :FOLHAS
+  IF :FOLHAS > 4 [
+    FD :FOLHAS / 25 
+    LT 80 SAMAMBAIA :FOLHAS * 0.3
+    RT 82  FD :FOLHAS / 25 
+    RT 80 SAMAMBAIA :FOLHAS * 0.3
+    LT 78 SAMAMBAIA :FOLHAS * 0.9
+    LT  2 BK  :FOLHAS / 25
+    LT  2 BK  :FOLHAS / 25
+  ]
+END
+
+TO SOL :TAMANHO
+  SETBG  1
+    SETPC 14
+  REPEAT 9 [
+    RAIO :TAMANHO
+    RIGHT 160
+  ]
+END
+
+TO TABUADA
+  PR [Entre um valor numerico para tabuada:]
+  MAKE "NUMERO RW
+  IFELSE (AND :NUMERO >= 2 :NUMERO <= 9) [
+    REPEAT 10 [PR (
+      SE :NUMERO "X REPCOUNT "= :NUMERO * REPCOUNT
+    )]
+  ][
+    PR [Valor fora da faixa]
+  ]
+END
+
+TO TABUADA2
+  PR [Entre um valor numerico para tabuada:]
+  MAKE "NUMERO READWORD
+  IFELSE (AND :NUMERO >= 2 :NUMERO <= 9) [
+    REPEAT 10 [PR (
+      SE 
+        FORM :NUMERO 2 0 
+      "X 
+        FORM REPCOUNT 2 0
+      "= 
+        FORM (:NUMERO * REPCOUNT) 3 0
+    )]
+  ][
+    PR [Valor fora da faixa]
+  ]
+END
+
